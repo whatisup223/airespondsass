@@ -148,7 +148,11 @@
                             </button>
                         </div>
 
-                        <a href="#"
+                        <a href="/login"
+                            class="text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+                            x-text="rtl ? 'دخول' : 'Sign In'">Sign In</a>
+
+                        <a href="/register"
                             class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-lg shadow-indigo-600/25 transition-all transform hover:-translate-y-1 active:scale-95"
                             x-text="rtl ? 'ابدأ الآن' : 'Get Started'">Get Started</a>
                     </div>
@@ -190,11 +194,19 @@
             <a @click="mobileMenuOpen = false; scrollTo('contact')" href="#contact"
                 class="block py-2 text-lg font-medium border-b border-gray-100 dark:border-slate-800"
                 x-text="rtl ? 'اتصل بنا' : 'Contact Us'">Contact Us</a>
-            <div class="flex justify-between items-center py-4">
-                <button @click="toggleDark()" class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-slate-800"
-                    x-text="darkMode ? (rtl ? 'وضع نهارى' : 'Light Mode') : (rtl ? 'وضع ليلى' : 'Dark Mode')"></button>
-                <button @click="toggleRtl()" class="px-4 py-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/50"
-                    x-text="rtl ? 'English' : 'العربية'"></button>
+            <div class="flex flex-col gap-3 pt-6 border-t border-gray-100 dark:border-slate-800">
+                <div class="flex gap-2 mb-2">
+                    <button @click="toggleDark()" class="flex-1 py-3 px-4 rounded-xl bg-gray-100 dark:bg-slate-800 text-sm font-bold flex items-center justify-center gap-2">
+                        <svg x-show="!darkMode" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                        <svg x-show="darkMode" class="w-4 h-4 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        <span x-text="darkMode ? (rtl ? 'وضع نهارى' : 'Light') : (rtl ? 'وضع ليلى' : 'Dark')"></span>
+                    </button>
+                    <button @click="toggleRtl()" class="flex-1 py-3 px-4 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-sm font-bold text-indigo-600 dark:text-indigo-400" x-text="rtl ? 'English' : 'العربية'"></button>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <a href="/login" class="w-full py-4 text-center rounded-xl bg-gray-100 dark:bg-slate-800 font-bold text-gray-700 dark:text-white" x-text="rtl ? 'تسجيل الدخول' : 'Sign In'"></a>
+                    <a href="/register" class="w-full py-4 text-center rounded-xl bg-indigo-600 text-white font-black shadow-lg shadow-indigo-600/30" x-text="rtl ? 'ابدأ الآن (مجاناً)' : 'Start for Free'"></a>
+                </div>
             </div>
         </div>
     </nav>
@@ -222,7 +234,7 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="#"
+                    <a href="/register"
                         class="px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-lg shadow-2xl shadow-indigo-600/30 transition-all transform hover:-translate-y-1"
                         x-text="rtl ? 'ابدأ تجربتك المجانية' : 'Start Free Trial'">Start Free Trial</a>
                     <a href="#features"
