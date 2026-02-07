@@ -60,12 +60,16 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
         }
 
         .dark .glass-dark {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: transparent;
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 50px -10px rgba(79, 70, 229, 0.4);
         }
     </style>
 </head>
@@ -248,11 +252,11 @@
             <!-- Interactive Hero Image / Mockup -->
             <div class="lg:w-1/2 relative group">
                 <div
-                    class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000">
+                    class="absolute -inset-10 bg-gradient-to-r from-indigo-600/40 via-purple-600/40 to-pink-600/40 rounded-full blur-3xl opacity-0 dark:opacity-40 animate-pulse pointer-events-none">
                 </div>
                 <div
-                    class="relative glass dark:glass-dark rounded-3xl p-6 shadow-2xl border border-white/40 dark:border-slate-600/50 backdrop-blur-2xl">
-                    <div class="bg-white dark:bg-slate-950 rounded-2xl overflow-hidden shadow-inner font-sans"
+                    class="relative glass dark:glass-dark rounded-3xl p-3 shadow-[0_0_60px_-15px_rgba(79,70,229,0.6)] backdrop-blur-3xl transition-all duration-700">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-inner font-sans"
                         :class="rtl ? 'font-arabic' : 'font-sans'">
                         <div class="h-10 border-b border-gray-100 dark:border-slate-800 flex items-center px-4 gap-2">
                             <div class="w-3 h-3 rounded-full bg-red-400"></div>
@@ -404,7 +408,7 @@
     </section>
 
     <!-- Features (The Big Features) -->
-    <section id="features" class="py-24 bg-white dark:bg-slate-950">
+    <section id="features" class="py-24 bg-white dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <h2 class="text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-widest text-sm mb-4"
@@ -470,29 +474,132 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <template x-for="i in 3" :key="i">
-                    <div class="glass dark:glass-dark p-8 rounded-3xl border dark:border-slate-800">
-                        <div class="flex text-yellow-400 mb-6">
+                    <div
+                        class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl transition-all duration-300 hover:shadow-indigo-500/10 hover:-translate-y-1">
+                        <div class="flex text-yellow-400 mb-6 font-sans">
                             <template x-for="star in 5">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
                                     <path
                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                 </svg>
                             </template>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-300 italic mb-8"
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-8 leading-relaxed text-sm"
                             x-text="rtl ? 'هذه الآداة وفرت عليّ موظفي خدمة كاملين. الرد سريع جداً والذكاء الاصطناعي يفهم العملاء ببراعة.' : 'This tool saved me 2 full-time employees. The responses are super fast and the AI understands customers perfectly.'">
                         </p>
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/50"></div>
+                            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center font-bold text-indigo-600 dark:text-indigo-400 text-[10px]"
+                                x-text="i == 1 ? 'MA' : (i == 2 ? 'SK' : 'AE')"></div>
                             <div>
-                                <h5 class="text-sm font-black dark:text-white"
-                                    x-text="rtl ? 'محمد علي' : 'Mohamed Ali'"></h5>
-                                <p class="text-xs text-gray-500"
+                                <h5 class="text-xs font-black dark:text-white"
+                                    x-text="rtl ? (i == 1 ? 'محمد علي' : (i == 2 ? 'سارة كريم' : 'أحمد السيد')) : (i == 1 ? 'Mohamed Ali' : (i == 2 ? 'Sarah Karim' : 'Ahmed Elsayed'))">
+                                </h5>
+                                <p class="text-[10px] text-gray-500"
                                     x-text="rtl ? 'صاحب متجر إلكتروني' : 'E-commerce Owner'"></p>
                             </div>
                         </div>
                     </div>
                 </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 relative overflow-hidden bg-white dark:bg-slate-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-widest text-sm mb-4"
+                    x-text="rtl ? 'خطط الأسعار' : 'Pricing Plans'"></h2>
+                <h3 class="text-3xl lg:text-5xl font-black dark:text-white"
+                    x-text="rtl ? 'اختر الخطة المناسبة لنمو تجارتك' : 'Choose the perfect plan for growth'"></h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Basic Plan -->
+                <div
+                    class="bg-gray-50/50 dark:bg-slate-900 p-10 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col">
+                    <h4 class="text-xl font-bold mb-2 dark:text-white" x-text="rtl ? 'الأساسية' : 'Basic'"></h4>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black text-indigo-600 dark:text-indigo-400">$29</span>
+                        <span class="text-gray-500 text-sm" x-text="rtl ? '/شهرياً' : '/month'"></span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <template
+                            x-for="feature in [rtl ? 'حساب واحد' : '1 Account', rtl ? '1,000 رد تلقائي' : '1,000 Auto Replies', rtl ? 'دعم فني عالي' : 'Priority Support']">
+                            <li class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                                <svg class="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span x-text="feature"></span>
+                            </li>
+                        </template>
+                    </ul>
+                    <a href="#"
+                        class="block w-full py-4 text-center rounded-2xl bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 font-bold hover:bg-indigo-600 hover:text-white transition-all"
+                        x-text="rtl ? 'اختر الخطة' : 'Choose Plan'"></a>
+                </div>
+
+                <!-- Pro Plan (Featured) -->
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-[2.5rem] blur-xl opacity-20 group-hover:opacity-40 transition duration-500">
+                    </div>
+                    <div
+                        class="relative h-full bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] border-2 border-indigo-600 dark:border-indigo-500 shadow-2xl scale-105 lg:scale-110 flex flex-col z-10 transition-all duration-300 hover:-translate-y-2">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap"
+                            x-text="rtl ? 'الأكثر طلباً' : 'MOST POPULAR'"></div>
+                        <h4 class="text-2xl font-black mb-2 dark:text-white" x-text="rtl ? 'الاحترافية' : 'Pro'"></h4>
+                        <div class="flex items-baseline gap-1 mb-10">
+                            <span
+                                class="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">$79</span>
+                            <span class="text-gray-500 text-sm font-bold" x-text="rtl ? '/شهرياً' : '/month'"></span>
+                        </div>
+                        <ul class="space-y-5 mb-12 flex-grow">
+                            <template
+                                x-for="feature in [rtl ? '5 حسابات متصلة' : '5 Linked Accounts', rtl ? 'ردود غير محدودة' : 'Unlimited Replies', rtl ? 'تحليل مشاعر فائق' : 'Deep Sentiment AI', rtl ? 'إخفاء ذكي للمنافسين' : 'Smart Hide Competitors']">
+                                <li class="flex items-center gap-3 text-gray-700 dark:text-gray-200">
+                                    <svg class="w-6 h-6 text-indigo-500 font-bold" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="font-bold" x-text="feature"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <a href="#"
+                            class="block w-full py-5 text-center rounded-2xl bg-indigo-600 text-white font-black text-lg shadow-xl shadow-indigo-600/30 hover:bg-indigo-700 transition-all active:scale-95"
+                            x-text="rtl ? 'ابدأ الآن' : 'Get Started Now'"></a>
+                    </div>
+                </div>
+
+                <!-- Agency Plan -->
+                <div
+                    class="bg-gray-50/50 dark:bg-slate-900 p-10 rounded-[2.5rem] border border-gray-100 dark:border-slate-800 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col">
+                    <h4 class="text-xl font-bold mb-2 dark:text-white" x-text="rtl ? 'الوكالات' : 'Agency'"></h4>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black text-indigo-600 dark:text-indigo-400">$199</span>
+                        <span class="text-gray-500 text-sm" x-text="rtl ? '/شهرياً' : '/month'"></span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <template
+                            x-for="feature in [rtl ? '20 حساب متصل' : '20 Linked Accounts', rtl ? 'كل المميزات الحالية' : 'All Current Features', rtl ? 'دعم VIP على مدار الساعة' : '24/7 VIP Support', rtl ? 'علامة تجارية مخصصة' : 'Custom Branding']">
+                            <li class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                                <svg class="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span x-text="feature"></span>
+                            </li>
+                        </template>
+                    </ul>
+                    <a href="#"
+                        class="block w-full py-4 text-center rounded-2xl bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-white font-bold hover:bg-indigo-600 hover:text-white transition-all"
+                        x-text="rtl ? 'تواصل معنا' : 'Contact Sales'"></a>
+                </div>
             </div>
         </div>
     </section>
@@ -532,7 +639,7 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section id="contact" class="py-24 relative overflow-hidden bg-white dark:bg-slate-950">
+    <section id="contact" class="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
 
@@ -591,13 +698,13 @@
                 <!-- Form Side (Mockup Style) -->
                 <div class="lg:w-7/12 mt-12 lg:mt-0 relative group">
                     <div
-                        class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-purple-600/20 rounded-[3rem] blur-2xl group-hover:opacity-60 transition duration-1000">
+                        class="absolute -inset-12 bg-gradient-to-tr from-indigo-600/30 to-purple-600/30 rounded-full blur-3xl opacity-0 dark:opacity-40 animate-pulse pointer-events-none">
                     </div>
 
                     <div
-                        class="relative glass dark:glass-dark rounded-[2.5rem] p-4 lg:p-6 shadow-2xl border border-white/40 dark:border-slate-700/50 backdrop-blur-2xl transition-all duration-500">
+                        class="relative glass dark:glass-dark rounded-[2.5rem] p-3 shadow-[0_0_60px_-20px_rgba(79,70,229,0.5)] backdrop-blur-3xl transition-all duration-700">
                         <div
-                            class="bg-white dark:bg-slate-950 rounded-[2rem] overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800">
+                            class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-inner border border-gray-100 dark:border-slate-800">
                             <!-- Window Header -->
                             <div
                                 class="h-12 border-b border-gray-100 dark:border-slate-800 flex items-center px-6 gap-3 bg-gray-50/50 dark:bg-slate-900/50">
@@ -705,7 +812,7 @@
 
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 pt-20 pb-10">
+    <footer class="bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
             <!-- Logo & Name -->
             <div class="mb-8 text-center text-center">
