@@ -1,0 +1,8 @@
+=== Deployment Instructions ===
+
+1. Upload the folder 'airesponds_core' to your hosting root (outside public_html).
+2. Upload contents of 'public_html' to your hosting's public_html folder.
+3. Edit 'airesponds_core/.env' with your database details.
+4. See DEPLOYMENT_GUIDE_AR.md for details on storage linking and more.
+
+Done!
